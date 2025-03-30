@@ -83,13 +83,6 @@ export const submission = defineType({
                 }),
         }),
         defineField({
-            name: 'problem',
-            title: 'Problem',
-            type: 'string',
-            readOnly: true,
-            description: 'Automatically extracted from the submission link',
-        }),
-        defineField({
             name: 'problemLink',
             title: 'Problem Link',
             type: 'url',
