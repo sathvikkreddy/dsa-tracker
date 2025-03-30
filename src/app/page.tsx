@@ -1,5 +1,6 @@
 import { auth, signIn, signOut } from '@/auth'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Home = async () => {
     const session = await auth()
@@ -23,6 +24,9 @@ const Home = async () => {
                     >
                         <button type='submit'>Logout</button>
                     </form>
+                    <Link href={'/studio/structure/submission'}>
+                        Add Submission in studio
+                    </Link>
                 </div>
                 {session ? session.user?.name : 'No user'}
             </main>
