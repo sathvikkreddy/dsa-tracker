@@ -3,6 +3,7 @@ import * as React from 'react'
 import {
     Sidebar,
     SidebarContent,
+    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarHeader,
@@ -13,6 +14,8 @@ import {
 } from '@/components/ui/sidebar'
 import { GalleryVerticalEnd } from 'lucide-react'
 import Link from 'next/link'
+import { NavUser } from './nav-user'
+import { auth } from '@/auth'
 
 // This is sample data.
 const data = {
@@ -36,7 +39,17 @@ const data = {
     ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export const AppSidebar = async ({
+    ...props
+}: React.ComponentProps<typeof Sidebar>) => {
+    const session = await auth()
+    const user = session?.user
+        ? {
+              email: session?.user?.email as string,
+              name: session?.user?.name as string,
+              avatar: session?.user?.image as string,
+          }
+        : null
     return (
         <Sidebar {...props}>
             <SidebarHeader>
@@ -75,6 +88,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     </SidebarGroup>
                 ))}
             </SidebarContent>
+            <SidebarFooter>
+                <NavUser user={user} />
+            </SidebarFooter>
             <SidebarRail />
         </Sidebar>
     )
