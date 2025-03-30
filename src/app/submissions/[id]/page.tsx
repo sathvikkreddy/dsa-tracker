@@ -56,11 +56,12 @@ const getStatusColor = (status: string) => {
             return 'bg-gray-100 text-gray-800'
     }
 }
+type Params = Promise<{ id: string }>
 
 export default async function SubmissionDetailPage({
     params,
 }: {
-    params: { id: string }
+    params: Params
 }) {
     // Fetch submission details from Sanity
     const { id } = await params

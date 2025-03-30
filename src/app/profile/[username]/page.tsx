@@ -77,12 +77,9 @@ const getStatusIcon = (status: string) => {
             return <XCircle className='h-4 w-4 text-red-500' />
     }
 }
+type Params = Promise<{ username: string }>
 
-export default async function ProfilePage({
-    params,
-}: {
-    params: { username: string }
-}) {
+export default async function ProfilePage({ params }: { params: Params }) {
     // Fetch author data from Sanity
     const { username } = await params
     const author = await client.fetch(AUTHOR_BY_ID_QUERY, {
