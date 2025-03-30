@@ -18,7 +18,7 @@ const Home = async () => {
                     <form
                         action={async () => {
                             'use server'
-                            await signOut({ redirectTo: '/' })
+                            await signOut({ redirectTo: '/loggedout' })
                         }}
                     >
                         <button type='submit'>Logout</button>
